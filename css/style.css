@@ -1,0 +1,389 @@
+/* --- Global Resets and Base Styles --- */
+
+/* Reset default margins and paddings for common elements */
+body, h1, h2, p, ul {
+    margin: 0;
+    padding: 0;
+}
+
+/* Apply box-sizing: border-box to all elements for easier layout management */
+*, *::before, *::after {
+    box-sizing: border-box;
+}
+
+/* Set scroll-padding-top to offset sticky navbar height during scroll-to-id events */
+html {
+    scroll-padding-top: 70px; /* Adjust this value if navbar height changes */
+}
+
+/* Set default font, background color, and text color for the body */
+body {
+    font-family: 'Poppins', sans-serif; /* Primary font */
+    background-color: #121212; /* Dark background for the page */
+    color: #fff; /* Default text color (white) */
+    line-height: 1.6; /* Improve readability */
+}
+
+/* --- Hero Section --- */
+header {
+    height: 100vh; /* Full viewport height */
+    display: flex;
+    justify-content: center; /* Center content horizontally */
+    align-items: center; /* Center content vertically */
+    text-align: center; /* Center text within the header */
+    /* Background: Black with a subtle orange radial glow from the center */
+    background: radial-gradient(circle at center, rgba(255, 165, 0, 0.3) 0%, rgba(0,0,0,0) 70%), #000;
+    overflow: hidden; /* Contain animated elements if they exceed bounds */
+}
+
+.hero-headline {
+    font-family: 'Montserrat', sans-serif; /* Secondary font for headline */
+    font-size: 5rem; /* Large font size for impact */
+    color: #FFA500; /* Vibrant orange for the headline */
+    /* Text shadow for a glow effect */
+    text-shadow: 0 0 10px rgba(255, 165, 0, 0.7), 0 0 20px rgba(255, 165, 0, 0.5);
+    animation: fadeInSlideUp 1.5s ease-out forwards; /* Entrance animation */
+}
+
+/* Keyframes for hero headline entrance animation (fade in and slide up) */
+@keyframes fadeInSlideUp {
+    0% {
+        opacity: 0;
+        transform: translateY(50px); /* Start slightly lower */
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0); /* End at original position */
+    }
+}
+
+/* --- Navigation Bar --- */
+nav {
+    position: sticky; /* Make the navbar stick to the top on scroll */
+    top: 0;
+    background-color: rgba(20, 20, 20, 0.8); /* Semi-transparent dark background */
+    padding: 1rem 0; /* Padding top/bottom */
+    z-index: 1000; /* Ensure navbar stays above other content */
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5); /* Subtle shadow for separation */
+    backdrop-filter: blur(5px); /* Glassmorphism effect for modern browsers */
+    -webkit-backdrop-filter: blur(5px); /* Safari support for backdrop-filter */
+}
+
+nav ul {
+    list-style: none; /* Remove default bullet points */
+    display: flex; /* Arrange list items horizontally */
+    justify-content: center; /* Center navigation links */
+    align-items: center; /* Align items vertically */
+}
+
+nav ul li {
+    margin: 0 1.5rem; /* Spacing between navigation links */
+}
+
+nav ul li a {
+    text-decoration: none; /* Remove default underline from links */
+    color: #FFA500; /* Orange color for links */
+    font-weight: 500; /* Medium font weight */
+    padding: 0.5rem 1rem; /* Padding for clickable area */
+    border-radius: 5px; /* Slightly rounded corners for hover effect */
+    transition: background-color 0.3s ease, color 0.3s ease; /* Smooth transition for hover */
+}
+
+nav ul li a:hover,
+nav ul li a.active { /* Style for hovered or active (via JS) link */
+    background-color: #FFA500; /* Orange background on hover/active */
+    color: #121212; /* Dark text on hover/active for contrast */
+}
+
+/* --- Menu Sections (General) --- */
+section {
+    padding: 4rem 2rem; /* Padding for top/bottom and left/right for all sections */
+}
+
+.menu-category-title {
+    text-align: center;
+    color: #FFA500; /* Orange color for category titles */
+    font-size: 2.5rem;
+    margin-bottom: 3rem;
+    font-family: 'Montserrat', sans-serif; /* Consistent font with hero headline */
+}
+
+.menu-items-container {
+    display: flex;
+    flex-wrap: wrap; /* Allow cards to wrap to the next line */
+    justify-content: center; /* Center cards within the container */
+    gap: 2rem; /* Spacing between menu cards */
+}
+
+/* --- Menu Card Styles --- */
+.menu-card {
+    background-color: #1e1e1e; /* Dark gray, slightly lighter than page background */
+    border-radius: 15px; /* Rounded corners for the card */
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4); /* Depth effect */
+    overflow: hidden; /* Ensures image corners are also rounded if it overflows */
+    width: 340px; /* Default width for each card */
+    margin: 1rem; /* Margin around each card */
+    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Smooth hover animations */
+    border: 1px solid rgba(255, 165, 0, 0.1); /* Subtle orange border */
+}
+
+.menu-card:hover {
+    transform: translateY(-10px) scale(1.03); /* Lift and scale card on hover */
+    /* Enhanced orange glow effect on hover */
+    box-shadow: 0 12px 24px rgba(255, 165, 0, 0.2), 0 0 15px rgba(255, 165, 0, 0.1);
+}
+
+.menu-card img {
+    width: 100%; /* Make image take full width of card */
+    height: 220px; /* Fixed height for images */
+    object-fit: cover; /* Ensure image covers the area, cropping if necessary */
+}
+
+.menu-card-content {
+    padding: 1.5rem; /* Padding inside the card below the image */
+}
+
+.menu-card-content h3 { /* Food item name */
+    color: #FFA500; /* Orange color */
+    font-size: 1.6rem;
+    margin-bottom: 0.75rem;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.menu-card-description {
+    color: #ccc; /* Lighter text color for description */
+    font-size: 0.9rem;
+    margin-bottom: 1rem;
+    min-height: 40px; /* Consistent height for descriptions before price/rating */
+}
+
+.menu-card-price-rating {
+    display: flex;
+    justify-content: space-between; /* Price on left, rating on right */
+    align-items: center; /* Align items vertically */
+    margin-bottom: 1.25rem;
+}
+
+.menu-card-price {
+    color: #FFA500;
+    font-weight: bold;
+    font-size: 1.3rem;
+}
+
+.menu-card-rating {
+    color: #FFA500; /* Orange for star ratings */
+    font-size: 1.1rem;
+}
+
+.order-now-btn {
+    background-color: #FFA500; /* Orange background */
+    color: #121212; /* Dark text for contrast */
+    border: none; /* Remove default border */
+    padding: 0.75rem 1.5rem; /* Padding for button */
+    border-radius: 8px; /* Rounded corners for button */
+    cursor: pointer; /* Pointer cursor on hover */
+    transition: background-color 0.3s ease, transform 0.2s ease; /* Smooth hover transitions */
+    font-weight: bold;
+    display: block; /* Make button take full width of its content area */
+    width: 100%;
+    text-align: center;
+}
+
+.order-now-btn:hover {
+    background-color: #cc8400; /* Darker orange on hover */
+    transform: scale(1.05); /* Slight scale up on hover */
+}
+
+/* --- Footer --- */
+footer {
+    background-color: #0a0a0a; /* Very dark background for footer */
+    color: #ccc; /* Light gray text */
+    padding: 3rem 2rem; /* Padding top/bottom and left/right */
+    text-align: center; /* Center text within footer sections */
+    border-top: 1px solid rgba(255, 165, 0, 0.1); /* Subtle orange top border for separation */
+}
+
+.footer-content {
+    display: flex;
+    flex-direction: column; /* Stack items vertically by default (mobile-first) */
+    align-items: center; /* Center items horizontally */
+    gap: 2rem; /* Space between footer sections (address, social, copyright) */
+}
+
+.footer-address p,
+.footer-social p,
+.footer-copyright p {
+    margin-bottom: 0.5rem;
+    font-size: 0.9rem;
+    line-height: 1.6; /* Consistent line height with body */
+}
+
+.footer-address p:first-child { /* Business Name */
+    font-weight: bold;
+    color: #fff; /* White for the business name for emphasis */
+    font-size: 1.1rem;
+}
+
+.social-icons {
+    list-style: none; /* Remove default bullet points */
+    padding: 0; /* Remove default padding */
+    display: flex;
+    justify-content: center; /* Center social media icons */
+    gap: 1.5rem; /* Spacing between icons */
+}
+
+.social-icons li a {
+    text-decoration: none; /* Remove underline from links */
+    color: #FFA500; /* Orange color for icons/text */
+    font-size: 1.5rem; /* Size for text placeholders (adjust if using actual icons) */
+    transition: color 0.3s ease, transform 0.3s ease; /* Smooth hover transitions */
+}
+
+.social-icons li a:hover {
+    color: #cc8400; /* Darker orange on hover */
+    transform: scale(1.1); /* Slight scale up on hover */
+}
+
+.footer-copyright {
+    margin-top: 1rem; /* Add some space above copyright text */
+    font-size: 0.8rem;
+    color: #aaa; /* Slightly lighter gray for copyright text */
+}
+
+/* --- Responsive Adjustments --- */
+
+/* Footer layout for larger screens (tablets and desktops) */
+@media (min-width: 768px) {
+    .footer-content {
+        flex-direction: row; /* Arrange items in a row */
+        justify-content: space-around; /* Distribute space around items */
+        align-items: flex-start; /* Align items to the top of their flex container */
+    }
+
+    .footer-address,
+    .footer-social,
+    .footer-copyright {
+        flex: 1; /* Allow items to take equal space */
+        text-align: center; /* Ensure text remains centered in its column */
+    }
+}
+
+/* Tablets and larger phones */
+@media (max-width: 992px) {
+    .hero-headline {
+        font-size: 4rem; /* Slightly smaller hero headline */
+    }
+
+    .menu-card {
+        width: 45%; /* Aim for 2 cards per row */
+    }
+
+    .menu-category-title h2 {
+        font-size: 2.2rem;
+    }
+}
+
+/* Smaller phones */
+@media (max-width: 767px) {
+    .hero-headline {
+        font-size: 3rem; /* Smaller hero headline for mobile */
+        padding: 0 1rem; /* Add some padding if text gets too close to edges */
+    }
+
+    nav ul {
+        flex-wrap: wrap; /* Allow nav items to wrap if needed */
+        padding: 0 1rem; /* Add padding to nav ul on mobile to prevent edge touching */
+    }
+
+    nav ul li {
+        margin: 0.5rem 0.5rem; /* Adjust margin for wrapped items */
+    }
+
+    nav ul li a {
+        padding: 0.4rem 0.8rem; /* Slightly reduce padding on nav links */
+        font-size: 0.9rem; /* Slightly reduce font size for nav links */
+    }
+
+    /* Note: If navbar height changes significantly due to wrapping,
+       scroll-padding-top in <html> might need adjustment via another media query. */
+
+    section {
+        padding: 3rem 1rem; /* Reduce section padding on mobile */
+    }
+
+    .menu-category-title h2 {
+        font-size: 1.8rem; /* Smaller category titles for mobile */
+        margin-bottom: 2rem;
+    }
+
+    .menu-items-container {
+        gap: 1rem; /* Reduce gap between cards */
+    }
+
+    .menu-card {
+        width: 85%; /* Show 1 card per row, with some side margin */
+        margin: 1rem auto; /* Center card when it's full width */
+    }
+
+    .menu-card-content h3 {
+        font-size: 1.4rem;
+    }
+
+    .menu-card-description {
+        font-size: 0.85rem;
+        min-height: auto; /* Allow description height to adjust naturally on mobile */
+    }
+
+    .menu-card-price {
+        font-size: 1.1rem;
+    }
+
+    .order-now-btn {
+        padding: 0.6rem 1.2rem;
+        font-size: 0.9rem;
+    }
+
+    .footer-content {
+        gap: 1.5rem; /* Reduce gap in footer for smaller screens */
+    }
+
+    .footer-address p,
+    .footer-social p,
+    .footer-copyright p {
+        font-size: 0.85rem;
+    }
+
+    .social-icons li a {
+        font-size: 1.3rem;
+    }
+}
+
+/* Very small phones */
+@media (max-width: 480px) {
+    .hero-headline {
+        font-size: 2.5rem; /* Even smaller for very small screens */
+    }
+
+    nav ul li {
+        margin: 0.3rem 0.3rem; /* Further adjust margin for very small screens */
+    }
+
+    nav ul li a {
+        padding: 0.3rem 0.6rem;
+        font-size: 0.8rem;
+    }
+
+    .menu-card {
+        width: 90%; /* Slightly more width to use space on very small screens */
+    }
+     .menu-card-content h3 {
+        font-size: 1.3rem;
+    }
+
+    .menu-card-description {
+        font-size: 0.8rem;
+    }
+     .menu-card-price {
+        font-size: 1rem;
+    }
+}
