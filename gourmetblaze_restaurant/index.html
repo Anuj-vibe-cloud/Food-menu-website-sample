@@ -1,0 +1,178 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gourmet Blaze</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            scroll-behavior: smooth;
+        }
+        /* Custom scrollbar for a more modern look (optional) */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #1a202c; /* dark-900 */
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #f97316; /* orange-500 */
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #ea580c; /* orange-600 */
+        }
+
+        /* CSS 3D Burger Animation */
+        .burger-scene {
+            perspective: 1000px;
+            width: 250px; /* Adjust size as needed */
+            height: 250px; /* Adjust size as needed */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .burger-pivot {
+            width: 100%;
+            height: 100%;
+            position: relative;
+            transform-style: preserve-3d;
+            animation: spin 20s infinite linear;
+        }
+
+        @keyframes spin {
+            from { transform: rotateY(0deg) rotateX(10deg); }
+            to { transform: rotateY(360deg) rotateX(10deg); }
+        }
+
+        .burger-layer {
+            position: absolute;
+            width: 150px; /* Base width */
+            height: 25px; /* Base height for layers */
+            left: 50%;
+            top: 50%;
+            margin-left: -75px; /* -width/2 */
+            margin-top: -12.5px; /* -height/2 */
+            background-size: cover;
+            background-position: center;
+            border-radius: 10px; /* Softer edges */
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+        }
+
+        .bun-top {
+            background-color: #d4a373; /* Light brown */
+            height: 40px;
+            border-radius: 20px 20px 5px 5px;
+            transform: translateZ(60px) translateY(-50px); /* Adjusted positioning */
+            background-image: radial-gradient(circle, #e6b88a 60%, #d4a373 100%); /* Gradient for roundness */
+        }
+         /* Sesame seeds for top bun */
+        .bun-top::before, .bun-top::after {
+            content: '';
+            position: absolute;
+            width: 5px;
+            height: 8px;
+            background-color: #fff8e7; /* Off-white */
+            border-radius: 50%;
+            box-shadow: 0 0 2px rgba(0,0,0,0.2);
+        }
+        .bun-top::before {
+            top: 10px; left: 30px; transform: rotate(20deg);
+        }
+        .bun-top::after {
+            top: 15px; left: 70px; transform: rotate(-15deg);
+        }
+        /* Add more pseudo-elements for more seeds if desired */
+
+
+        .lettuce {
+            background-color: #55a630; /* Green */
+            width: 160px; /* Slightly wider */
+            margin-left: -80px;
+            height: 15px;
+            border-radius: 5px;
+            transform: translateZ(40px) translateY(-20px) rotateX(-5deg); /* Slight tilt */
+            /* Wavy edge effect */
+            clip-path: polygon(0% 20%, 15% 0%, 30% 22%, 45% 5%, 60% 25%, 75% 8%, 90% 20%, 100% 10%, 100% 80%, 90% 100%, 75% 80%, 60% 95%, 45% 78%, 30% 90%, 15% 75%, 0% 90%);
+        }
+
+        .cheese {
+            background-color: #fca311; /* Orange-yellow */
+            width: 140px; /* Slightly smaller than patty */
+            margin-left: -70px;
+            height: 10px;
+            border-radius: 3px;
+            transform: translateZ(25px) translateY(-5px) rotateX(2deg) rotateZ(3deg); /* Slightly melted look */
+        }
+
+        .patty {
+            background-color: #7f5539; /* Dark brown */
+            height: 30px;
+            border-radius: 15px;
+            transform: translateZ(0px) translateY(15px);
+            background-image: radial-gradient(ellipse, #8f6649 60%, #7f5539 100%); /* Texture */
+        }
+
+        .bun-bottom {
+            background-color: #d4a373; /* Light brown */
+            height: 30px;
+            border-radius: 5px 5px 15px 15px;
+            transform: translateZ(-30px) translateY(45px);
+        }
+        .hero-text-shadow {
+            text-shadow: 0px 2px 4px rgba(249, 115, 22, 0.5), 0px 4px 10px rgba(0, 0, 0, 0.5);
+        }
+
+        /* Keyframe animations for HeroSection */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .animate-fadeInUp {
+            animation: fadeInUp 1s ease-out forwards;
+        }
+
+        @keyframes fadeInRight {
+            from {
+                opacity: 0;
+                transform: translateX(30px); /* Fading in from the right */
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .animate-fadeInRight {
+            animation: fadeInRight 1s ease-out forwards;
+        }
+
+    </style>
+<script type="importmap">
+{
+  "imports": {
+    "react/": "https://esm.sh/react@^19.1.0/",
+    "react": "https://esm.sh/react@^19.1.0",
+    "react-dom/": "https://esm.sh/react-dom@^19.1.0/"
+  }
+}
+</script>
+<link rel="stylesheet" href="/index.css">
+</head>
+<body class="bg-slate-900 text-slate-100">
+    <div id="root"></div>
+    <script type="module" src="/index.tsx"></script>
+</body>
+</html>
